@@ -1,0 +1,23 @@
+#!/bin/sh -e
+
+if [[ -z $1 ]]; then
+    REQUIREMENTS="."
+elif [[ $1 == "dev" ]]; then
+    REQUIREMENTS=".[dev]"
+elif [[ $1 == "test" ]]; then
+    REQUIREMENTS=".[test]"
+fi
+
+VENV="env"
+
+set -x
+
+if [ -z "$GITHUB_ACTIONS" ]; then
+    python -m venv "$VENV"
+    PIP="$VENV/bin/pip"
+else
+    PIP="pip"
+fi
+
+"$PIP" install -U pip
+"$PIP" install "$REQUIREMENTS"

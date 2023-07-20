@@ -1,0 +1,62 @@
+[project]
+name = "flask-app"
+description = "Flask boilerplate"
+readme = "README.md"
+version = "0.0.1"
+requires-python = ">=3.9"
+authors = [
+    { name = "Nguyen Khac Thanh", email = "nguyenkhacthanh244@gmail.com" },
+]
+dependencies = [
+    "Flask",
+    "Flask-SQLAlchemy",
+    "Flask-Migrate",
+    "Flask-Login",
+    "Flask-Admin",
+    "Flask-AdminLTE3",
+    "Gunicorn",
+    "pydantic",
+    "pyjwt",
+    "pymysql",
+    "gevent",
+    "flask-shell-ipython",
+    "cryptography",
+]  
+
+[project.optional-dependencies]
+test = [
+    "pytest",
+    "pytest-cov",
+    "ruff",
+    "mypy",
+    "faker",
+]
+
+dev = [
+    "python-lsp-server",
+    "python-lsp-ruff",
+]
+
+[project-urls]
+Homepage = "https://github.com/magiskboy/flask-boilerplate"
+
+[tool.mypy]
+ignore_missing_imports = true
+explicit_package_bases = true
+plugins = "pydantic.mypy, sqlalchemy.ext.mypy.plugin"
+
+[tool.coverage.run]
+omit = ["tests/*"]
+
+[tool.coverage.path]
+source = "app"
+
+[tool.coverage.report]
+fail_under = 90
+show_missing = true
+sort = "Cover"
+skip_covered = true
+
+[tool.ruff]
+ignore = ["E501"]
+target-version = "py310"
